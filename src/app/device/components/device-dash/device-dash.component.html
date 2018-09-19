@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <!--<button class="create-btn btn btn-success btn-lg pull-right" (click)="dialog.toggle($event)">
+    <i class="fa fa-plus fa-2" style="font-size:1em"></i>
+  </button>-->
+  <span (click)="dialog.toggle($event)" class="pull-right"><i class="btn-add"></i></span>
+  <hr style="margin-bottom:50px;"/>
+  <!--<a class="pull-right"><i class="fa fa-plus-circle create-btn-link" (click)="dialog.toggle($event)"></i></a>-->
+  <!--<p-blockUI [blocked]="displayDlg">-->
+  <div class="device-dash">
+    <p-overlayPanel #dialog dismissable="true">
+      <widget-create (onWidgetCreate)="displayWidget($event)"></widget-create>
+    </p-overlayPanel>
+  </div>
+  <!--</p-blockUI>-->
+  <div *ngFor="let configObj of config" class="graph-ele col-xs-4">
+    <!--<div *ngIf="configObj.name=='Garden'" class="graphs">
+        <simple-graph [noOfObs]=5 [setConfig]="configObj" [obsData]="obsNullData"></simple-graph>
+    </div>
+    <div *ngIf="configObj.name!='Garden'" class="graphs">
+      <simple-graph [noOfObs]=5 [setConfig]="configObj" [obsData]="data"></simple-graph>
+    </div>-->
+    <div class="graphs">
+      <simple-graph [noOfObs]=5 [setConfig]="configObj" [obsData]="data"></simple-graph>
+    </div>
+  </div>
+</div>

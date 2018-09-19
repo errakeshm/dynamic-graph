@@ -1,0 +1,125 @@
+<div class="container" style="max-width:400px;">
+  <div class="row">
+    <div class="reg-form-dialog">
+      <div class="col-sm-12">
+        <p-messages *ngIf="hasMsg" [(value)]="messages"></p-messages>
+        <h4>Device Registration</h4>
+        <form [formGroup]="devWidgForm">
+          <!--<div class="form-group">
+            <label  class="cols-sm-12 control-label">Channel </label>
+            <div class="col-sm-12 noColPadding">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <p-dropdown placeholder="Select a Channel" [options]="channels" [style]="{'width':'100%'}" formControlName="channel" (onChange)="populateForm($event)"></p-dropdown>
+              </div>
+            </div>
+          </div>-->
+          <div class="form-group">
+            <label  class="cols-sm-12 control-label">Widget Name </label>
+            <div class="col-sm-12 noColPadding">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-microchip" aria-hidden="true"></i></span>
+               <input placeholder="Enter widget name" type="text" formControlName="name" style="width:100%;padding-left:1em;" pInputText/>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label  class="cols-sm-12 control-label">Location </label>
+            <div class="col-sm-12 noColPadding">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-telegram" aria-hidden="true"></i></span>
+                <p-dropdown [styleClass]="(!devWidgFormErrors.location.valid)?'error':''" placeholder="Select Location" [options]="locations" [style]="{'width':'100%'}" formControlName="location" (onChange)="populateForm($event)"></p-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 noColPadding">
+            <div class="col-xs-7 noColPadding">
+              <div class="form-group">
+                <label class="cols-sm-12 control-label">Operation </label>
+                <div class="col-sm-12 noColPadding">
+                  <div class="input-group">
+                     <span class="input-group-addon"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+                     <p-dropdown [styleClass]="(!devWidgFormErrors.operation.valid)?'error':''" [disabled]="disabled" placeholder="Select Operation" [options]="operations" 
+                        [style]="{'width':'100%'}" formControlName="operation" 
+                        ></p-dropdown>
+                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-4 noColPadding col-xs-offset-1">
+              <div class="form-group">
+                <label class="cols-sm-12 control-label">Threshold </label>
+                <div class="col-sm-12 noColPadding">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-superpowers" aria-hidden="true"></i></span>
+                    <!--<input [attr.class]="(!devWidgFormErrors.threshold.valid)?'error':''" placeholder="Threshold" type="text" formControlName="threshold" style="width:100%" 
+                    pInputText (onChange)="populateForm($event)" [disabled]="disabled"/>-->
+                    <input [attr.class]="(!devWidgFormErrors.threshold.valid)?'error':''" placeholder="Threshold" type="text" 
+                    formControlName="threshold" style="width:100%;padding-left:1em;" pInputText [disabled]="disabled"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label  class="cols-sm-12 control-label">Data Representation </label>
+            <div class="col-sm-12 noColPadding">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-bar-chart" aria-hidden="true"></i></span>
+                <p-dropdown [styleClass]="(!devWidgFormErrors.representation.valid)?'error':''" [disabled]="disabled" placeholder="Select Graph Representation" [options]="representation" formControlName="representation" [style]="{'width':'100%'}" filter="filter">
+                  <ng-template let-option pTemplate="item">
+                    <div class="ui-helper-clearfix graph-option">
+                      <span><i class="fa fa-{{option.value}} fa" aria-hidden="true"></i></span>
+                      <span style="font-size:14px;padding-left:5px;">{{option.label}}</span>
+                    </div>
+                  </ng-template>
+                </p-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-7 noColPadding">
+              <div class="form-group">
+                <label class="cols-sm-12 control-label">Unit </label>
+                <div class="col-sm-12 noColPadding">
+                  <div class="input-group">
+                     <span class="input-group-addon"><i class="fa fa-thermometer-0" aria-hidden="true"></i></span>
+                     <p-dropdown [styleClass]="(!devWidgFormErrors.unit.valid)?'error':''" [disabled]="disabled" placeholder="Select Unit (C/Pa etc)" [options]="units" 
+                        [style]="{'width':'100%'}" formControlName="unit" 
+                        ></p-dropdown>
+                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-4 noColPadding col-xs-offset-1">
+              <div class="form-group">
+                <label class="cols-sm-12 control-label">Color </label>
+                <div class="col-sm-12 noColPadding">
+                  <div class="input-group">
+                    <!--<span class="input-group-addon"><i class="fa fa-telegram fa" aria-hidden="true"></i></span>-->
+                    <span style="border-color:2px solid black;"><p-colorPicker [disabled]="disabled" formControlName="color"></p-colorPicker></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                  
+          <div class="form-group">
+            <label  class="cols-sm-12 control-label">Notification Interval </label>
+            <div class="col-sm-12 noColPadding">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                <p-dropdown [styleClass]="(!devWidgFormErrors.interval.valid)?'error':''" [disabled]="disabled" placeholder="Select Interval" [options]="intervals" [style]="{'width':'100%'}" formControlName="interval"></p-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="form-group pull-right">
+            <button class="btn btn-success" (click)="submit()">Create</button>
+            <button class="btn btn-warning" (click)="reset()">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

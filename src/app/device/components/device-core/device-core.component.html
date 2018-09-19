@@ -1,0 +1,7 @@
+<span *ngFor="let type of deviceTypes" style="display:inline;padding:12px;">
+<button class="btn btn-success" [routerLink]="['./select',type]">
+    {{type}}
+</button>
+</span>
+<div style="padding:12px;"></div>
+<router-outlet></router-outlet>

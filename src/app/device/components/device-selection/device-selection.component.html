@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngFor="let name of devNameList;let i = index">
+            <div class="panel panel-default dev-panel-pad panel-shadow">
+                <div class="panel-body">
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 dev-icon">
+                            <div class="col-xs-4">
+                                <button [routerLink]="['/device/widget',devTypeSel,name]" class="btn btn-lg btn-success btn-shadow pull-right" style="border-radius:100%;">
+                                    <i style="font-size:50px;" class="glyphicon glyphicon-lg glyphicon-fire"></i>
+                                </button>
+                            </div>
+                            <div class="col-xs-8">
+                                <span class="dev-name">{{name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 action-items">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+    .app-pull-right{
+    float:right !important;
+}
+.app-text-center{
+    text-align:center;
+    vertical-align:middle;
+    left:50%;
+}
+/*Device specific styles*/
+.device-card{
+    width:200px;
+    height:250px;
+}
+.device-img{
+    width:50%;
+    height:50%;
+    padding-top:10px;
+}
+.device-title{
+    margin-bottom:20px;
+}
+
+.device-icon-blue{
+    color:blue;
+}
+/*Test*/
+.bck-image{
+    background-repeat:no-repeat;
+    background-size:100%;
+    position:relative;
+    background-position:50% 50%;
+}
+    
+    <div class="dev-sel-bck">
+<mat-grid-list cols="{{noOfCols}}" rowHeight="1:1">
+    <mat-grid-tile *ngFor="let name of devNameList; let i=index;">
+        <mat-card class="device-card">
+            <mat-card-title class="device-title app-text-center">{{name}}</mat-card-title>
+            <mat-card-content class="device-img">
+                <img mat-card-image src="../../../assets/images/dev{{i}}.jpg">
+            </mat-card-content>
+            <mat-card-actions>
+                <button [routerLink]="['/device/widget',devTypeSel,name]" mat-fab color="accent" class="app-pull-right">
+                    <i class="material-icons">create</i>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+</div>-->

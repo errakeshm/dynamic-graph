@@ -1,0 +1,25 @@
+<div class="row card-layout" [ngClass]="{'glow-inactive':!isSensorAlive}">
+    <div class="col-xs-12 card-win-icon" style="display:inline;">
+        <span *ngIf="currentDate" class="last-active pull-left">Last Active:&nbsp;{{currentDate}}</span>
+        <i class="fa fa-close pull-right"></i>
+        <i class="fa fa-edit pull-right"></i>
+    </div>
+    <div class="col-xs-12" style="display:inline;">
+        <h4 class="graph-title col-xs-12">{{graphModelConfig.name}}<i [ngClass]="{'active':isSensorAlive,'inactive':!isSensorAlive}"></i></h4>
+        <!--<span *ngIf="currentDate" class="last-active pull-right">Last Active:&nbsp;{{currentDate}}</span>-->
+    </div>
+    <div class="col-xs-12">
+        <p-chart #chartComponent type="{{graphModelConfig.type}}" [data]="graphModel"></p-chart>
+    </div>
+    <div class="col-xs-12">
+        
+        <div *ngIf="currentData" class="stats pull-right">
+            <i class="fa" [ngClass]="{
+                'fa-arrow-down green':(graphModelConfig.operation=='<=')?(currentData<=graphModelConfig.threshold):(currentData>graphModelConfig.threshold),
+                'fa-arrow-up red':(graphModelConfig.operation=='<=')?(currentData>graphModelConfig.threshold):(currentData<=graphModelConfig.threshold)}">
+            </i>
+            <span [ngClass]="{'green':(graphModelConfig.operation=='<=')?(currentData<=graphModelConfig.threshold):(currentData>graphModelConfig.threshold),
+            'red':(graphModelConfig.operation=='<=')?(currentData>graphModelConfig.threshold):(currentData<=graphModelConfig.threshold)}">{{currentData | number : '1.2-2'}}&nbsp;{{graphModelConfig.unit}}</span>
+        </div>
+    </div>
+</div>
