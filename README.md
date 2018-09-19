@@ -8,6 +8,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Important Steps
 
-Please add the Google News API key in the file app-constants.ts
+To run the application use localhost:4200/device -> Select a sensor - >select a device -> Click on + to create a new widget.
 
 
